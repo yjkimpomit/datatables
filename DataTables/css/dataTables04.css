@@ -1,0 +1,10 @@
+/* dataTables.css */
+@import url('./reset.css');
+
+.dt-paging {
+	display: flex;
+}
+
+.info-and-select {
+	display: inline-flex;
+}
