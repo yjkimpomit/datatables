@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width" />
+	<title>Tabulator 검색 예제</title>
+	<link href="https://unpkg.com/tabulator-tables/dist/css/tabulator.min.css" rel="stylesheet">
+	<link href="https://unpkg.com/tabulator-tables@5.5.0/dist/css/tabulator_bootstrap5.min.css" rel="stylesheet">
+</head>
+
+<body>
+	<button id="download-xlsx">엑셀 다운로드</button>
+	<input type="text" id="global-search" placeholder="검색어를 입력하세요" style="margin-left:10px;">
+	
+	<div id="example-table" class="table-responsive"></div>
+
+	<!-- BS -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
+	
+	<!-- Tabulator -->
+	<script src="https://unpkg.com/tabulator-tables/dist/js/tabulator.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+	<script>
+		var tabledata = [
+			{ id: 1, name: "Oli Bob", progress: 12, gender: "male", rating: 1, col: "red", dob: "1984-02-19", car: true },
+			{ id: 2, name: "Mary May", progress: 1, gender: "female", rating: 2, col: "blue", dob: "1982-05-14", car: true },
+			{ id: 3, name: "Christine Lobowski", progress: 42, gender: "female", rating: 0, col: "green", dob: "1982-05-22", car: false },
+			{ id: 4, name: "Brendon Philips", progress: 100, gender: "male", rating: 1, col: "orange", dob: "1980-08-01", car: true },
+			{ id: 5, name: "Margret Marmajuke", progress: 16, gender: "female", rating: 5, col: "yellow", dob: "1999-01-31", car: false },
+			{ id: 6, name: "Frank Harbours", progress: 38, gender: "male", rating: 4, col: "red", dob: "1966-05-12", car: true },
+			{ id: 7, name: "Nina Simone", progress: 73, gender: "female", rating: 3, col: "purple", dob: "1970-12-21", car: false },
+			{ id: 8, name: "John Doe", progress: 27, gender: "male", rating: 2, col: "blue", dob: "1993-07-11", car: true },
+			{ id: 9, name: "Jane Smith", progress: 85, gender: "female", rating: 4, col: "pink", dob: "1988-03-05", car: true },
+			{ id: 10, name: "Paul Walker", progress: 55, gender: "male", rating: 2, col: "gray", dob: "1991-09-19", car: false },
+			{ id: 11, name: "Lara Croft", progress: 67, gender: "female", rating: 5, col: "brown", dob: "1985-10-25", car: true },
+			{ id: 12, name: "Bruce Wayne", progress: 31, gender: "male", rating: 3, col: "black", dob: "1975-04-17", car: false }
+		];
+
+		var table = new Tabulator("#example-table", {
+			data: tabledata,
+			layout: "fitColumns",
+			pagination: "local",
+			paginationSize: 5,
+			paginationSizeSelector: [5, 10, 20], // 페이지당 행 개수 선택 옵션
+			movableColumns: true,
+			columns: [
+				{ title: "이름", field: "name", sorter: "string" },
+				{ title: "진행률", field: "progress", sorter: "number" },
+				{ title: "성별", field: "gender", sorter: "string" },
+				{ title: "평점", field: "rating", sorter: "number" },
+				{ title: "색상", field: "col", sorter: "string" },
+				{ title: "생년월일", field: "dob", sorter: "date" },
+				{ title: "운전자", field: "car", formatter: "tickCross", sorter: "boolean" }
+			]
+		});
+
+		// 엑셀 다운로드
+		document.getElementById("download-xlsx").addEventListener("click", function () {
+			table.download("xlsx", "tabledata.xlsx");
+		});
+
+		// 상단 검색 인풋 필터링
+		document.getElementById("global-search").addEventListener("keyup", function () {
+			var keyword = this.value.toLowerCase();
+			table.setFilter(function (data, filterParams) {
+				return (
+					data.name.toLowerCase().includes(keyword) ||
+					data.gender.toLowerCase().includes(keyword) ||
+					data.col.toLowerCase().includes(keyword)
+				);
+			});
+		});
+		
+		
+		// Tabulator 렌더링 후 셀렉트박스에 Bootstrap 클래스 추가
+		table.on("renderComplete", function(){
+			document.querySelectorAll(".tabulator-paginator select").forEach(function(select){
+				select.classList.add("form-select");
+				select.style.width = "auto"; // 부트스트랩 스타일에 맞게 너비 조정 (선택)
+			});
+		});
+	</script>
+</body>
+
+</html>

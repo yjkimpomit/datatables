@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<title>DataTables 엑셀 & 페이징</title>
+
+	<!-- jQuery -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+	<!-- DataTables -->
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+	<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
+	<!-- Buttons Extension -->
+	<link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css">
+	<script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
+	<script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
+	
+	<!-- JSZip for Excel export -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+	<!-- Font Awesome for icon -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+	<link rel="stylesheet" href="./css/common.css">
+</head>
+
+<body>
+<!-- https://datatables.net/ -->
+	<h2>직원 목록</h2>
+	<table id="example" class="display" style="width: 100%">
+		<thead>
+			<tr>
+			<th>이름</th>
+			<th>직책</th>
+			<th>부서</th>
+			<th>내부코드</th>
+			</tr>
+		</thead>
+	</table>
+
+	<script>
+		$(document).ready(function () {
+			$('#example').DataTable({
+				dom: 'Bfrtip',
+				lengthMenu: [[5, 10, 20, -1], [5, 10, 20, "전체"]], // 페이지당 항목 수
+				buttons: [
+					{
+						extend: 'excelHtml5',
+						text: '<i class="fas fa-file-excel"></i> 엑셀 다운로드',
+						className: 'btn-excel',
+						title: '직원목록_엑셀_내보내기',
+						exportOptions: {
+							columns: [0, 1, 2, 3] // 숨은 열도 포함하려면 명시적으로 지정
+							// columns: ':visible' 하면 숨은 열 제외
+						},
+						filename: '직원목록_내보내기' // 저장되는 파일명 (확장자 자동 추가됨)
+					}
+				],
+				columnDefs: [
+					{ targets: 3, visible: false } // 4번째 열 숨김 처리
+				],
+				ajax: './json/data.json',  // JSON 파일 경로
+				columns: [
+					{ data: '이름' },
+					{ data: '직책' },
+					{ data: '부서' },
+					{ data: '내부코드' }
+				]
+			});
+		});
+	</script>
+
+</body>
+
+</html>
