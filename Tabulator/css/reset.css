@@ -1,0 +1,77 @@
+/* reset.css */
+
+/* 기본적인 박스 모델 통일 */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+/* 마진 제거 */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol {
+	margin: 0;
+	padding: 0;
+}
+
+
+/* 폰트 상속 */
+body {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+code {
+	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+		monospace;
+}
+
+input,
+button,
+textarea,
+select {
+	font: inherit;
+	font-weight: 400;
+}
+
+strong {
+	font-weight: 700;
+}
+
+/* 이미지 등 요소 너비 제한 */
+img,
+svg,
+video {
+	max-width: 100%;
+	display: block;
+}
+
+/* 테이블 기본값 */
+table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+/* list */
+li {
+	list-style-type: none;
+}
+
+/* 가림처리 */
+.visually-hidden {
+	position: absolute;
+	top: -9999em;
+	left: -9999em;
+	text-indent: -9999em;
+	opacity: 0;
+	font-size: 0;
+	line-height: 0;
+}
