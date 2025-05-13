@@ -5,7 +5,7 @@ const COMMON_DATATABLES_OPTIONS = {
 	scrollCollapse: true,
 	scroller: true,
 	scrollX: true,
-	scrollY: 480,
+	scrollY: 424,
 	fixedHeader: true,
 	fixedColumns: { leftColumns: 1 },
 	colReorder: true,
@@ -16,8 +16,8 @@ const COMMON_DATATABLES_OPTIONS = {
 	lengthMenu: [[2, 10, 25, 100, -1], [2, 10, 25, 100, "All"]],
 	pageLength: 10,
 	layout: {
-		topStart: 'buttons',
-		topEnd: 'search',
+		topStart: ['info'],
+		topEnd: ['search', 'buttons'],
 		bottomStart: 'pageLength',
 		bottomEnd: {
 			paging: {
