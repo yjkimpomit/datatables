@@ -19,6 +19,7 @@ body {
 label[for*='dt-'] {
 	font-weight: 500 !important;
 	padding-right: 8px;
+	cursor: pointer;
 }
 
 /* thead 필터링 아이콘 */

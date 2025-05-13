@@ -2,8 +2,11 @@
 // 1. 공통 옵션 객체를 전역(혹은 상위 스코프)에 정의
 const COMMON_DATATABLES_OPTIONS = {
 	responsive: true,
+	
+	// 스크롤 옵션 활성화시, 페이지당 .. 개씩 보기 옵션은 비활성 됨
 	scrollCollapse: true,
-	scroller: true,
+	//scroller: true, 
+	
 	scrollX: true,
 	scrollY: 424,
 	fixedHeader: true,
@@ -16,8 +19,10 @@ const COMMON_DATATABLES_OPTIONS = {
 	lengthMenu: [[2, 10, 25, 100, -1], [2, 10, 25, 100, "All"]],
 	pageLength: 10,
 	layout: {
-		topStart: ['info'],
-		topEnd: ['search', 'buttons'],
+		top2: 'searchPanes',
+		top1: 'searchBuilder',
+		topStart: ['buttons', 'info'],
+		topEnd: ['search'],
 		bottomStart: 'pageLength',
 		bottomEnd: {
 			paging: {
