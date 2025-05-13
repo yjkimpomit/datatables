@@ -21,6 +21,12 @@
 	<link rel="stylesheet" href="https://cdn.datatables.net/fixedcolumns/5.0.4/css/fixedColumns.dataTables.min.css">
 	<link rel="stylesheet" href="https://cdn.datatables.net/fixedcolumns/5.0.4/css/fixedColumns.bootstrap5.css"/>
 
+	<!-- colReorder -->
+	<link rel="stylesheet" href="https://cdn.datatables.net/colreorder/2.0.4/css/colReorder.bootstrap5.css"/>
+
+	<!-- Scroller -->
+	<link rel="stylesheet" href="https://cdn.datatables.net/scroller/2.4.3/css/scroller.bootstrap5.css"/>
+
 	<!-- Buttons -->
 	<link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.2.3/css/buttons.dataTables.css"/>
 
@@ -55,6 +61,14 @@
 	<script src="https://cdn.datatables.net/fixedcolumns/5.0.4/js/dataTables.fixedColumns.min.js"></script>
 	<script src="https://cdn.datatables.net/fixedcolumns/5.0.4/js/fixedColumns.bootstrap5.min.js"></script>
 
+	<!-- colReorder -->
+	<script src="https://cdn.datatables.net/colreorder/2.0.4/js/dataTables.colReorder.js"></script>
+	<script src="https://cdn.datatables.net/colreorder/2.0.4/js/colReorder.bootstrap5.js"></script>
+
+	<!-- Scroller -->
+	<script src="https://cdn.datatables.net/scroller/2.4.3/js/dataTables.scroller.js"></script>
+	<script src="https://cdn.datatables.net/scroller/2.4.3/js/scroller.bootstrap5.js"></script>
+
 	<!-- Buttons -->
 	<script src="https://cdn.datatables.net/buttons/3.2.3/js/dataTables.buttons.js"></script>
 	<script src="https://cdn.datatables.net/buttons/3.2.3/js/buttons.bootstrap5.js"></script>
@@ -65,58 +79,11 @@
 	<script src="https://cdn.datatables.net/buttons/3.2.3/js/buttons.html5.min.js"></script>
 	<script src="https://cdn.datatables.net/buttons/3.2.3/js/buttons.print.min.js"></script>
 	<script src="https://cdn.datatables.net/buttons/3.2.3/js/buttons.colVis.min.js"></script>
-	
-	<script>
-		// 1. 공통 옵션 객체를 전역(혹은 상위 스코프)에 정의
-		const COMMON_DATATABLES_OPTIONS = {
-			responsive: true,
-			scrollCollapse: true,
-			scrollX: true,
-			scrollY: 480,
-			fixedHeader: true,
-			fixedColumns: { leftColumns: 1 },
-			buttons: [
-				'copy', 'excel', 'pdf'
-			],
-			paging: true,
-			lengthMenu: [[10, 25, 100, -1], [10, 25, 100, "All"]],
-			pageLength: 10,
-			layout: {
-				topStart: 'buttons',
-				topEnd: 'search',         // 상단 오른쪽: 검색창
-				bottomStart: 'pageLength',      // 하단 왼쪽: 정보(몇 개 중 몇 개 표시)
-				bottomEnd: {
-					paging: {
-						boundaryNumbers: false,
-						firstLast: false,
-						previousNext: false,
-						type: 'numbers'
-					}
-				}
-			},
-			language: {
-				search: "테이블 검색",
-				lengthMenu: "한 화면에 표시할 항목 수: _MENU_개",
-				info: "총 _TOTAL_건 중 _START_~_END_건 표시"
-			}
-		};
 
-		// 2. 범용 적용 함수
-		function applyDataTablesToTarget(targetSelector, customOptions = {}) {
-			$(`${targetSelector} table`).each(function() {
-				// 이미 DataTable이 적용된 경우 destroy 후 재초기화
-				if ($.fn.DataTable.isDataTable(this)) {
-					$(this).DataTable().destroy();
-				}
-				// 공통 옵션과 개별 옵션을 합쳐서 적용
-				$(this).DataTable(Object.assign(
-					{ destroy: true }, // 항상 destroy 옵션 추가
-					COMMON_DATATABLES_OPTIONS, // 공통 옵션
-					customOptions // 필요시 개별 옵션 덮어쓰기
-				));
-			});
-		}
-		
+	<!-- 공통 JS 분리 -->
+    <script src="./js/datatable-common.js"></script>
+	
+	<script>		
 		// 3. 사용 예시
 		$(document).ready(function () {
 			// load sample table
@@ -126,9 +93,9 @@
 				success: function(data) {
 					$('#sampleCode').html(data);
 					
-					// 필요하다면 개별 옵션도 추가 가능
 					applyDataTablesToTarget('#sampleCode', {
-					// pageLength: 20, // 예시: 개별 옵션
+						// 필요하다면 개별 옵션도 추가 가능
+						// pageLength: 25, 
 					});
 				}
 			});

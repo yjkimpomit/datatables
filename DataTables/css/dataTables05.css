@@ -1,5 +1,11 @@
 /* dataTables.css */
 @import url('./reset.css');
+@import url('./variables.css');
+@import url('https://cdn.jsdelivr.net/gh/yjkimpomit/fonts@master/NotoSansKR/NotoSansKR.css');
+
+body {
+	color: var(--text);
+}
 
 .dt-paging {
 	display: flex;
@@ -8,3 +14,88 @@
 .info-and-select {
 	display: inline-flex;
 }
+
+/* 레이블 */
+label[for*='dt-'] {
+	font-weight: 500 !important;
+	padding-right: 8px;
+}
+
+/* thead 필터링 아이콘 */
+/* 
+table.dataTable thead>tr>th div.dt-column-header,
+table.dataTable thead>tr>th div.dt-column-footer,
+table.dataTable thead>tr>td div.dt-column-header,
+table.dataTable thead>tr>td div.dt-column-footer,
+table.dataTable tfoot>tr>th div.dt-column-header,
+table.dataTable tfoot>tr>th div.dt-column-footer,
+table.dataTable tfoot>tr>td div.dt-column-header,
+table.dataTable tfoot>tr>td div.dt-column-footer {
+	background: rgba(20, 30, 120, 0.2);
+} */
+
+table.dataTable thead>tr>th.dt-orderable-asc span.dt-column-order,
+table.dataTable thead>tr>th.dt-orderable-desc span.dt-column-order,
+table.dataTable thead>tr>th.dt-ordering-asc span.dt-column-order,
+table.dataTable thead>tr>th.dt-ordering-desc span.dt-column-order,
+table.dataTable thead>tr>td.dt-orderable-asc span.dt-column-order,
+table.dataTable thead>tr>td.dt-orderable-desc span.dt-column-order,
+table.dataTable thead>tr>td.dt-ordering-asc span.dt-column-order,
+table.dataTable thead>tr>td.dt-ordering-desc span.dt-column-order {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	align-self: center;
+	/* background: rgba(255, 30, 120, 0.2); */
+}
+
+table.dataTable thead>tr>th.dt-orderable-asc span.dt-column-order:before,
+table.dataTable thead>tr>th.dt-orderable-asc span.dt-column-order:after,
+table.dataTable thead>tr>th.dt-orderable-desc span.dt-column-order:before,
+table.dataTable thead>tr>th.dt-orderable-desc span.dt-column-order:after,
+table.dataTable thead>tr>th.dt-ordering-asc span.dt-column-order:before,
+table.dataTable thead>tr>th.dt-ordering-asc span.dt-column-order:after,
+table.dataTable thead>tr>th.dt-ordering-desc span.dt-column-order:before,
+table.dataTable thead>tr>th.dt-ordering-desc span.dt-column-order:after,
+table.dataTable thead>tr>td.dt-orderable-asc span.dt-column-order:before,
+table.dataTable thead>tr>td.dt-orderable-asc span.dt-column-order:after,
+table.dataTable thead>tr>td.dt-orderable-desc span.dt-column-order:before,
+table.dataTable thead>tr>td.dt-orderable-desc span.dt-column-order:after,
+table.dataTable thead>tr>td.dt-ordering-asc span.dt-column-order:before,
+table.dataTable thead>tr>td.dt-ordering-asc span.dt-column-order:after,
+table.dataTable thead>tr>td.dt-ordering-desc span.dt-column-order:before,
+table.dataTable thead>tr>td.dt-ordering-desc span.dt-column-order:after {
+	right: 10px;
+	line-height: 1;
+	font-size: 10px;
+	transform: scaleY(.8);
+}
+
+table.dataTable thead>tr>th.dt-ordering-asc span.dt-column-order:before,
+table.dataTable thead>tr>th.dt-ordering-desc span.dt-column-order:after,
+table.dataTable thead>tr>td.dt-ordering-asc span.dt-column-order:before,
+table.dataTable thead>tr>td.dt-ordering-desc span.dt-column-order:after {
+	opacity: 1;
+}
+
+/* thead align-left
+table.dataTable thead th.dt-type-numeric,
+table.dataTable thead th.dt-type-date {
+	text-align: left;
+}
+
+table.dataTable thead th.dt-type-numeric div.dt-column-header,
+table.dataTable thead th.dt-type-numeric div.dt-column-footer,
+table.dataTable thead th.dt-type-date div.dt-column-header,
+table.dataTable thead th.dt-type-date div.dt-column-footer {
+	flex-direction: row;
+}
+*/
+
+
+
+
+
+
+
