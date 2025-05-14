@@ -98,10 +98,21 @@
 	<script src="https://cdn.datatables.net/select/3.0.0/js/dataTables.select.js"></script>
 	<script src="https://cdn.datatables.net/select/3.0.0/js/select.bootstrap5.js"></script>
 
+	<!-- alert -->
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 	<!-- 공통 JS 분리 -->
     <script src="./js/datatable-common.js"></script>
 	
-	<script>		
+	<script>
+		// alert - https://sweetalert2.github.io/#icons
+		Swal.fire({
+			title: 'Success!',
+			text: 'Do you want to continue',
+			icon: 'success',
+			confirmButtonText: 'OK'
+		});
+
 		// 3. 사용 예시
 		$(document).ready(function () {
 			// load sample table
